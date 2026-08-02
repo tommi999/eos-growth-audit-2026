@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f5f4ef"/>
+  <circle cx="95" cy="65" r="230" fill="#e4a824" opacity=".18"/>
+  <circle cx="1110" cy="95" r="270" fill="#2f7b57" opacity=".14"/>
+  <rect x="78" y="70" width="1044" height="490" rx="42" fill="#fffef9" stroke="#dfe4dd"/>
+  <rect x="120" y="112" width="102" height="34" rx="17" fill="#e4a824"/>
+  <text x="171" y="135" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="800" fill="#17211b">AUDIT 2026</text>
+  <text x="120" y="250" font-family="Arial,sans-serif" font-size="76" font-weight="900" fill="#17211b">Mehr Reichweite.</text>
+  <text x="120" y="340" font-family="Arial,sans-serif" font-size="76" font-weight="900" fill="#174d35">Weniger Blindflug.</text>
+  <text x="120" y="407" font-family="Arial,sans-serif" font-size="30" fill="#66736b">Umami · Supabase · SEO · AI Search · Social</text>
+  <line x1="120" y1="462" x2="1080" y2="462" stroke="#dfe4dd"/>
+  <text x="120" y="515" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#17211b">EOS Erleben · Growth &amp; Funnel Audit</text>
+  <text x="1080" y="515" text-anchor="end" font-family="Arial,sans-serif" font-size="23" fill="#66736b">02.08.2026</text>
+</svg>

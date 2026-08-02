@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EOS Erleben · Growth & Funnel Audit 2026</title>
+  <meta name="description" content="Interaktiver Growth-, Traffic- und Funnel-Audit für eos-erleben.de – Umami, Supabase, SEO, AI Search und Social Media.">
+  <link rel="canonical" href="https://tommi999.github.io/eos-growth-audit-2026/">
+  <meta property="og:title" content="EOS Erleben · Growth & Funnel Audit">
+  <meta property="og:description" content="Was wirklich wächst, wo Traffic verloren geht und welche Maßnahmen jetzt den größten Hebel haben.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tommi999.github.io/eos-growth-audit-2026/">
+  <meta property="og:image" content="https://tommi999.github.io/eos-growth-audit-2026/social-card.png">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --ink: #17211b;
+      --muted: #66736b;
+      --paper: #f5f4ef;
+      --card: #fffef9;
+      --green: #174d35;
+      --green-2: #2f7b57;
+      --green-soft: #dceadf;
+      --gold: #e4a824;
+      --gold-soft: #f7e6b8;
+      --red: #b94b42;
+      --red-soft: #f7ded9;
+      --line: #dfe4dd;
+      --shadow: 0 24px 60px rgba(21, 54, 36, .09);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 2%, rgba(228, 168, 36, .14), transparent 24rem),
+        radial-gradient(circle at 90% 12%, rgba(47, 123, 87, .12), transparent 26rem),
+        var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+    .skip { position: fixed; left: 1rem; top: -5rem; z-index: 99; background: white; padding: .7rem 1rem; border-radius: .6rem; }
+    .skip:focus { top: 1rem; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(245, 244, 239, .83);
+      border-bottom: 1px solid rgba(23, 77, 53, .1);
+    }
+    .topbar-inner {
+      width: min(1180px, calc(100% - 2rem));
+      min-height: 70px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand { display: flex; align-items: center; gap: .75rem; font-weight: 850; letter-spacing: -.02em; }
+    .brand-mark {
+      width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center;
+      color: var(--green); background: var(--gold); box-shadow: inset 0 0 0 6px rgba(255,255,255,.3);
+      font-weight: 950;
+    }
+    nav { display: flex; gap: .25rem; flex-wrap: wrap; justify-content: flex-end; }
+    nav a { text-decoration: none; color: var(--muted); font-size: .9rem; padding: .55rem .72rem; border-radius: 999px; }
+    nav a:hover, nav a:focus-visible { color: var(--green); background: white; outline: none; }
+
+    main, footer { width: min(1180px, calc(100% - 2rem)); margin-inline: auto; }
+    section { scroll-margin-top: 90px; }
+
+    .hero { padding: clamp(4rem, 9vw, 8rem) 0 3rem; display: grid; grid-template-columns: 1.25fr .75fr; gap: clamp(2rem, 6vw, 5rem); align-items: end; }
+    .eyebrow { display: inline-flex; gap: .55rem; align-items: center; color: var(--green); font-weight: 800; text-transform: uppercase; letter-spacing: .14em; font-size: .75rem; }
+    .eyebrow::before { content: ""; width: 32px; height: 3px; background: var(--gold); border-radius: 99px; }
+    h1 { font-size: clamp(3rem, 7vw, 6.6rem); letter-spacing: -.065em; line-height: .94; margin: 1rem 0 1.4rem; max-width: 900px; }
+    h1 span { color: var(--green); }
+    .lead { color: var(--muted); font-size: clamp(1.05rem, 1.8vw, 1.34rem); max-width: 760px; margin: 0; }
+    .hero-note { background: var(--green); color: white; padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow); transform: rotate(1.2deg); }
+    .hero-note strong { display: block; font-size: 1.3rem; margin-bottom: .5rem; }
+    .hero-note p { margin: 0; color: rgba(255,255,255,.76); }
+    .hero-note .stamp { display: inline-block; background: var(--gold); color: var(--ink); padding: .35rem .7rem; border-radius: 999px; font-weight: 850; font-size: .76rem; margin-bottom: 1rem; }
+
+    .section-head { display: grid; grid-template-columns: .65fr 1.35fr; gap: 2rem; align-items: end; padding: 5rem 0 1.8rem; }
+    .section-head h2 { margin: 0; font-size: clamp(2rem, 4vw, 3.8rem); line-height: 1; letter-spacing: -.045em; }
+    .section-head p { color: var(--muted); font-size: 1.05rem; margin: 0; max-width: 680px; justify-self: end; }
+
+    .metrics { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+    .metric { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 1.25rem; box-shadow: 0 8px 22px rgba(21,54,36,.04); }
+    .metric small { display: block; color: var(--muted); min-height: 2.7em; }
+    .metric strong { display: block; font-size: clamp(1.8rem, 4vw, 2.7rem); letter-spacing: -.06em; line-height: 1.05; margin: .8rem 0 .3rem; }
+    .delta { font-weight: 850; font-size: .82rem; }
+    .down { color: var(--red); }
+    .up { color: var(--green-2); }
+    .neutral { color: var(--muted); }
+
+    .callout { margin-top: 1rem; display: grid; grid-template-columns: .8fr 1.2fr; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .callout-title { background: var(--red); color: white; padding: 2rem; }
+    .callout-title span { display: block; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1; font-weight: 950; letter-spacing: -.06em; }
+    .callout-copy { background: var(--red-soft); padding: 2rem; display: grid; align-content: center; }
+    .callout h3 { margin: 0 0 .65rem; font-size: 1.4rem; }
+    .callout p { margin: 0; color: #6b3c37; }
+
+    .compare-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 1rem; }
+    .panel { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.25rem, 3vw, 2rem); box-shadow: 0 10px 28px rgba(21,54,36,.05); }
+    .panel h3 { margin: 0 0 .35rem; font-size: 1.35rem; letter-spacing: -.025em; }
+    .subtle { color: var(--muted); font-size: .9rem; margin: 0 0 1.5rem; }
+    .bar-row { display: grid; grid-template-columns: 150px 1fr 72px; align-items: center; gap: .75rem; margin: 1.05rem 0; }
+    .bar-label { font-size: .86rem; color: var(--muted); }
+    .bar-track { height: 14px; border-radius: 99px; background: #eceee9; overflow: hidden; position: relative; }
+    .bar { height: 100%; border-radius: inherit; background: var(--green-2); transform-origin: left; animation: grow 1s ease-out both; }
+    .bar.previous { background: #b9c2ba; position: absolute; inset: 0 auto 0 0; opacity: .7; z-index: 0; }
+    .bar.current { position: relative; z-index: 1; height: 7px; top: 3.5px; }
+    .bar-value { text-align: right; font-weight: 850; font-variant-numeric: tabular-nums; }
+    @keyframes grow { from { transform: scaleX(0); } }
+    .legend { display: flex; gap: 1rem; font-size: .78rem; color: var(--muted); margin-top: 1.2rem; }
+    .legend i { width: 10px; height: 10px; display: inline-block; border-radius: 50%; margin-right: .35rem; background: var(--green-2); }
+    .legend .prev { background: #b9c2ba; }
+
+    .source-list { display: grid; gap: .75rem; }
+    .source { display: grid; grid-template-columns: 1fr auto; align-items: center; border-bottom: 1px solid var(--line); padding: .68rem 0; }
+    .source:last-child { border-bottom: 0; }
+    .source b { font-size: 1.25rem; }
+    .source small { display: block; color: var(--muted); }
+
+    .funnel { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8rem; counter-reset: funnel; }
+    .funnel-step { position: relative; overflow: hidden; min-height: 210px; background: var(--green); color: white; padding: 1.4rem; border-radius: 22px; }
+    .funnel-step:nth-child(2) { background: #286a4b; }
+    .funnel-step:nth-child(3) { background: #4e895f; }
+    .funnel-step:nth-child(4) { background: var(--gold); color: var(--ink); }
+    .funnel-step::after { counter-increment: funnel; content: "0" counter(funnel); position: absolute; right: -.1em; bottom: -.33em; font-size: 7.5rem; font-weight: 950; opacity: .08; }
+    .funnel-step small { opacity: .75; text-transform: uppercase; letter-spacing: .1em; font-weight: 800; }
+    .funnel-step strong { display: block; font-size: 2.6rem; line-height: 1; margin: 1.5rem 0 .5rem; letter-spacing: -.05em; }
+    .funnel-step p { margin: 0; font-size: .9rem; opacity: .78; }
+    .conversion-note { margin-top: 1rem; padding: 1rem 1.2rem; border-radius: 16px; background: var(--green-soft); color: var(--green); font-weight: 750; }
+
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: .85rem .65rem; border-bottom: 1px solid var(--line); }
+    th { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
+    td:last-child, th:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+    tbody tr:hover { background: rgba(47,123,87,.045); }
+
+    .signal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .signal { padding: 1.4rem; border: 1px solid var(--line); border-radius: 20px; background: var(--card); }
+    .signal .icon { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; background: var(--green-soft); color: var(--green); font-weight: 950; margin-bottom: 1rem; }
+    .signal h3 { margin: 0 0 .5rem; font-size: 1.1rem; }
+    .signal p { margin: 0; color: var(--muted); font-size: .92rem; }
+    .signal strong { color: var(--ink); }
+
+    .priority-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .priority { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; display: grid; grid-template-columns: auto 1fr; gap: 1rem; }
+    .priority-number { width: 44px; height: 44px; border-radius: 14px; background: var(--gold); display: grid; place-items: center; font-weight: 950; }
+    .priority h3 { margin: .15rem 0 .4rem; font-size: 1.08rem; }
+    .priority p { margin: 0; color: var(--muted); font-size: .92rem; }
+
+    .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .phase { border-top: 6px solid var(--green); background: var(--card); border-radius: 0 0 var(--radius) var(--radius); padding: 1.5rem; }
+    .phase:nth-child(2) { border-color: var(--gold); }
+    .phase:nth-child(3) { border-color: var(--green-2); }
+    .phase b { color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; }
+    .phase h3 { margin: .35rem 0 .9rem; }
+    .phase ul { margin: 0; padding-left: 1.2rem; color: var(--muted); }
+    .phase li + li { margin-top: .55rem; }
+
+    .method { margin: 5rem 0 2rem; padding: 1.4rem; border: 1px solid var(--line); border-radius: 18px; color: var(--muted); font-size: .86rem; background: rgba(255,255,255,.45); }
+    .method strong { color: var(--ink); }
+    footer { display: flex; justify-content: space-between; gap: 2rem; padding: 2rem 0 3rem; color: var(--muted); font-size: .85rem; }
+
+    @media (max-width: 900px) {
+      nav { display: none; }
+      .hero, .section-head, .callout, .compare-grid { grid-template-columns: 1fr; }
+      .hero-note { transform: none; }
+      .section-head p { justify-self: start; }
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+      .metric:first-child { grid-column: span 2; }
+      .funnel, .roadmap { grid-template-columns: 1fr 1fr; }
+      .signal-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding-top: 3rem; }
+      h1 { font-size: 3.5rem; }
+      .metrics, .funnel, .signal-grid, .priority-grid, .roadmap { grid-template-columns: 1fr; }
+      .metric:first-child { grid-column: auto; }
+      .bar-row { grid-template-columns: 105px 1fr 50px; gap: .45rem; }
+      .panel { padding: 1.1rem; }
+      th:nth-child(2), td:nth-child(2) { display: none; }
+      footer { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .bar { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Zum Bericht springen</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><span class="brand-mark">EOS</span><span>Growth Audit · 2026</span></div>
+      <nav aria-label="Berichtsnavigation">
+        <a href="#traffic">Traffic</a><a href="#funnel">Funnel</a><a href="#search">Search & AI</a><a href="#pipeline">Pipeline</a><a href="#plan">90-Tage-Plan</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Live Audit · 2. August 2026</span>
+        <h1>Mehr Reichweite.<br><span>Weniger Blindflug.</span></h1>
+        <p class="lead">Eine datenbasierte Sicht auf eos-erleben.de: bereinigter Umami-Traffic, der echte Buchungsfunnel, Supabase-Anfragen und die nächsten Hebel für Search, AI Search und Social.</p>
+      </div>
+      <aside class="hero-note">
+        <span class="stamp">Kurzdiagnose</span>
+        <strong>Die Conversion wird besser. Die qualifizierte Reichweite wird kleiner.</strong>
+        <p>Der richtige Schritt ist jetzt nicht „noch mehr Content“, sondern Attribution, Distribution und ein reibungsfreier Funnel.</p>
+      </aside>
+    </section>
+
+    <section id="traffic">
+      <div class="section-head">
+        <h2>Was wirklich<br>passiert</h2>
+        <p>Die Rohdaten zeigen scheinbar explosives Wachstum. Nach Bot- und Intern-Bereinigung bleibt ein nüchterneres Bild: weniger öffentliche Reichweite, aber ein effizienterer Booking-Funnel.</p>
+      </div>
+
+      <div class="metrics">
+        <article class="metric"><small>Öffentliche Seitenaufrufe · DE · 30 Tage</small><strong>1.683</strong><span class="delta down">−16,6 % zum Vorzeitraum</span></article>
+        <article class="metric"><small>Öffentliche Sessions · DE · 30 Tage</small><strong>595</strong><span class="delta down">−14,6 %</span></article>
+        <article class="metric"><small>Search-Referrals · DE · 30 Tage</small><strong>330</strong><span class="delta down">−16,7 %</span></article>
+        <article class="metric"><small>Formular → Submit · Sessions</small><strong>33 %</strong><span class="delta up">vorher 20 %</span></article>
+        <article class="metric"><small>Externe Supabase-Vorgänge · 7 Tage</small><strong>12</strong><span class="delta up">vorher 6</span></article>
+      </div>
+
+      <div class="callout">
+        <div class="callout-title"><small>Verdächtiger Traffic · 30 Tage</small><span>10.640</span><b>Linux-Seitenaufrufe</b></div>
+        <div class="callout-copy"><h3>Der große Juli-Peak ist kein belastbares Wachstum.</h3><p>91 % der Roh-„Besucher“ waren Linux-Sessions; fast alles waren Ein-Seiten-Aufrufe aus den USA und weiteren Ländern auf drei Blogseiten. Diese Aktivität muss aus Growth-Reports ausgeschlossen und technisch gefiltert werden.</p></div>
+      </div>
+
+      <div class="section-head">
+        <h2>30 Tage<br>im Vergleich</h2>
+        <p>Deutschland-Segment, öffentliche Website. Die graue Fläche zeigt den vorherigen 30-Tage-Zeitraum, die grüne Linie den aktuellen.</p>
+      </div>
+      <div class="compare-grid">
+        <article class="panel">
+          <h3>Qualifizierter Traffic und Conversion</h3>
+          <p class="subtle">Aktuell vs. vorheriger Zeitraum</p>
+          <div class="bar-row"><span class="bar-label">Pageviews</span><span class="bar-track"><i class="bar previous" style="width:100%"></i><i class="bar current" style="width:83.4%"></i></span><span class="bar-value">1.683</span></div>
+          <div class="bar-row"><span class="bar-label">Sessions</span><span class="bar-track"><i class="bar previous" style="width:100%"></i><i class="bar current" style="width:85.4%"></i></span><span class="bar-value">595</span></div>
+          <div class="bar-row"><span class="bar-label">Search</span><span class="bar-track"><i class="bar previous" style="width:100%"></i><i class="bar current" style="width:83.3%"></i></span><span class="bar-value">330</span></div>
+          <div class="bar-row"><span class="bar-label">Submit-Sessions</span><span class="bar-track"><i class="bar previous" style="width:73.7%"></i><i class="bar current" style="width:100%"></i></span><span class="bar-value">19</span></div>
+          <div class="legend"><span><i></i> aktuell</span><span><i class="prev"></i> vorher</span></div>
+        </article>
+        <article class="panel">
+          <h3>Erkannte Referrer · DE</h3>
+          <p class="subtle">Mehrfachkontakte möglich; Direct/Unknown nicht enthalten.</p>
+          <div class="source-list">
+            <div class="source"><span><strong>Search</strong><small>Google, Bing, Ecosia, DDG …</small></span><b>330</b></div>
+            <div class="source"><span><strong>E-Mail</strong><small>Brevo, Gmail und Mail-Links</small></span><b>45</b></div>
+            <div class="source"><span><strong>Partner</strong><small>Landkreise und Bildungsseiten</small></span><b>20</b></div>
+            <div class="source"><span><strong>Social</strong><small>Instagram und Facebook</small></span><b>5</b></div>
+            <div class="source"><span><strong>AI Search</strong><small>ChatGPT</small></span><b>4</b></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="funnel">
+      <div class="section-head">
+        <h2>Der echte<br>Booking-Funnel</h2>
+        <p>Unique Sessions im deutschen Segment, letzte 30 Tage. „Submit“ bedeutet: Formular geöffnet und im selben Besuch mindestens ein `booking_submitted`-Event ausgelöst.</p>
+      </div>
+      <div class="funnel">
+        <article class="funnel-step"><small>Öffentliche Website</small><strong>595</strong><p>qualifizierte Sessions auf öffentlich erreichbaren Seiten</p></article>
+        <article class="funnel-step"><small>Booking geöffnet</small><strong>57</strong><p>9,6 % der öffentlichen Sessions</p></article>
+        <article class="funnel-step"><small>Submission</small><strong>19</strong><p>33,3 % der Booking-Open-Sessions</p></article>
+        <article class="funnel-step"><small>CRM angelegt</small><strong>21</strong><p>externe Vorgänge; derzeit nicht sauber auf Webkanäle zurückführbar</p></article>
+      </div>
+      <div class="conversion-note">Die Open→Submit-Rate stieg von 20,0 % auf 33,3 %. Gleichzeitig sanken Booking-Opens von 70 auf 57. Conversion optimieren – und parallel qualifizierten Traffic zurückgewinnen.</div>
+
+      <div class="section-head">
+        <h2>Welche Angebote<br>konvertieren</h2>
+        <p>Formular-Opens und Submit-Sessions nach Einstieg. Familienbildungsfreizeiten treiben den größten Teil des Funnels.</p>
+      </div>
+      <div class="panel">
+        <table>
+          <thead><tr><th>Booking-Einstieg</th><th>Opens</th><th>Submit-Sessions</th><th>Open → Submit</th></tr></thead>
+          <tbody>
+            <tr><td>Familienbildungsfreizeiten</td><td>26</td><td>9</td><td>34,6 %</td></tr>
+            <tr><td>Klassenfahrten</td><td>17</td><td>5</td><td>29,4 %</td></tr>
+            <tr><td>Schüler-Erlebnistage</td><td>6</td><td>3</td><td>50,0 %</td></tr>
+            <tr><td>Kanu-Klassenfahrt</td><td>3</td><td>1</td><td>33,3 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="search">
+      <div class="section-head">
+        <h2>Search, AI<br>& Social</h2>
+        <p>Die technische Basis ist stark. Der Hebel liegt jetzt bei regionaler Commercial Intent, eindeutigen Entity-Signalen und Distribution statt weiterer Content-Masse.</p>
+      </div>
+      <div class="signal-grid">
+        <article class="signal"><span class="icon">✓</span><h3>Technisches SEO</h3><p><strong>113/113 URLs mit HTTP 200</strong>, keine falschen Canonicals, nur drei H1-Probleme. Seit Juni wurde sehr viel sauber repariert.</p></article>
+        <article class="signal"><span class="icon">AI</span><h3>AI Search</h3><p>Nur <strong>4 ChatGPT-Referrals</strong> in 30 Tagen. `llms.txt` und Schema sind vorhanden, aber `sameAs`, verifizierbare Fälle und Expertensignale fehlen.</p></article>
+        <article class="signal"><span class="icon">↗</span><h3>Social</h3><p>Nur <strong>5 Social Referrals</strong>. Allgemeine Instagram-Links führen zu einem persönlichen Profil; 13 relevante Seiten haben kein `og:image`.</p></article>
+        <article class="signal"><span class="icon">23</span><h3>Content-Menge</h3><p><strong>23 Blogartikel im Juni/Juli.</strong> Keiner der neuen Vergleichs- und Fallartikel ist bereits ein Top-30-Pfad im DE-Traffic. Jetzt distribuieren.</p></article>
+        <article class="signal"><span class="icon">⌖</span><h3>Lokale Nachfrage</h3><p>Starke regionale Seiten existieren, aber <strong>Schwarzwald und Freiburg fehlen</strong> – trotz Standort, Kompetenz und hoher kommerzieller Relevanz.</p></article>
+        <article class="signal"><span class="icon">ID</span><h3>Attribution</h3><p>UTM, Referrer und Click IDs werden <strong>nicht in Supabase gespeichert</strong>. Growth kann derzeit nicht bis zur Bestätigung verfolgt werden.</p></article>
+      </div>
+
+      <div class="section-head">
+        <h2>Google-Landingpages<br>mit Zugkraft</h2>
+        <p>Deutschland, Google.com als Referrer, letzte 30 Tage. Die serviceorientierten Seiten funktionieren – einzelne Informationsartikel schwanken stark.</p>
+      </div>
+      <div class="panel">
+        <table>
+          <thead><tr><th>Landingpage</th><th>Rolle</th><th>Google-Kontakte</th></tr></thead>
+          <tbody>
+            <tr><td>Homepage</td><td>Marke / Navigation</td><td>64</td></tr>
+            <tr><td>Über EOS</td><td>Vertrauen</td><td>29</td></tr>
+            <tr><td>Klassenfahrten</td><td>Commercial</td><td>29</td></tr>
+            <tr><td>Familienbildungsfreizeiten</td><td>Commercial</td><td>26</td></tr>
+            <tr><td>Jobs</td><td>Recruiting</td><td>24</td></tr>
+            <tr><td>Klassenfahrt & Bürgergeld</td><td>Information</td><td>13</td></tr>
+            <tr><td>Klassenkasse</td><td>Information</td><td>12</td></tr>
+            <tr><td>Budget-Planer</td><td>Tool / Information</td><td>9</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="pipeline">
+      <div class="section-head">
+        <h2>Supabase<br>Pipeline</h2>
+        <p>Die Nachfrage ist operativ sichtbar. Aber ohne gemeinsame Funnel-ID bleibt offen, welche Vorgänge aus Organic, AI Search, Social, Empfehlungen oder manueller Erfassung stammen.</p>
+      </div>
+      <div class="metrics">
+        <article class="metric"><small>Offene externe Requests</small><strong>20</strong><span class="delta neutral">aktueller Bestand</span></article>
+        <article class="metric"><small>Älter als 90 Tage</small><strong>5</strong><span class="delta down">Pipeline-Hygiene</span></article>
+        <article class="metric"><small>Startdatum bereits vorbei</small><strong>3</strong><span class="delta down">sofort bereinigen</span></article>
+        <article class="metric"><small>Mit Teilnehmerzahl · 90 Tage</small><strong>5/15</strong><span class="delta down">zu wenig qualifiziert</span></article>
+        <article class="metric"><small>Preis > Budget</small><strong>7/13</strong><span class="delta down">Conversion-Risiko</span></article>
+      </div>
+    </section>
+
+    <section id="plan">
+      <div class="section-head">
+        <h2>Die fünf<br>größten Hebel</h2>
+        <p>In dieser Reihenfolge entsteht ein messbares Growth-System – statt isolierter SEO-, Social- und Formularmaßnahmen.</p>
+      </div>
+      <div class="priority-grid">
+        <article class="priority"><span class="priority-number">1</span><div><h3>Umami und Supabase verbinden</h3><p>Anonyme Funnel-ID, First/Last Touch, UTM, Landingpage und Backend-Status speichern. Keine E-Mail oder Namen an Analytics senden.</p></div></article>
+        <article class="priority"><span class="priority-number">2</span><div><h3>Booking-Reibung entfernen</h3><p>Doppelbutton, Cookie-Overlay, vorzeitiges Lead-Speichern, leere Steps, Autocomplete und unklare Rückrufzeiten korrigieren.</p></div></article>
+        <article class="priority"><span class="priority-number">3</span><div><h3>Traffic sauber trennen</h3><p>Öffentliche Website und Intern-App auf eigene Umami Website-IDs verteilen. Bot-/Spam-Segment standardmäßig ausschließen.</p></div></article>
+        <article class="priority"><span class="priority-number">4</span><div><h3>Regionalen Commercial Intent gewinnen</h3><p>Schwarzwald, Freiburg und Baden-Württemberg als beweisgestützte Landingpage-Cluster aufbauen; Booking-Seiten auf `noindex`.</p></div></article>
+        <article class="priority"><span class="priority-number">5</span><div><h3>Content in Distribution verwandeln</h3><p>Die 23 neuen Artikel in Reels, Carousels, Newsletter und Partnerbeiträge überführen. EOS-Markenprofile und `sameAs` konsolidieren.</p></div></article>
+        <article class="priority"><span class="priority-number">+</span><div><h3>Pipeline verbindlich führen</h3><p>Neue CRM-Phasen, Verantwortliche, Next Actions und automatische Alerts für alte, über Budget liegende oder unvollständige Requests.</p></div></article>
+      </div>
+
+      <div class="section-head">
+        <h2>90 Tage<br>Umsetzung</h2>
+        <p>Messung zuerst, dann Reichweite skalieren. So wird jeder neue Klick bis zum echten Geschäftsergebnis bewertbar.</p>
+      </div>
+      <div class="roadmap">
+        <article class="phase"><b>Tage 1–14</b><h3>Messung & Funnel</h3><ul><li>Attribution und Funnel-ID</li><li>Booking UX reparieren</li><li>Umami Properties trennen</li><li>Alte Requests bereinigen</li></ul></article>
+        <article class="phase"><b>Tage 15–45</b><h3>Search & AI</h3><ul><li>Schwarzwald/Freiburg-Cluster</li><li>Booking-Seiten noindex</li><li>sameAs und Autorenbelege</li><li>Case Studies verifizierbar machen</li></ul></article>
+        <article class="phase"><b>Tage 46–90</b><h3>Distribution & Authority</h3><ul><li>8-Wochen-Social-System</li><li>Partner- und Schul-Backlinks</li><li>GSC-Gewinner ausbauen</li><li>Kanäle bis „confirmed“ messen</li></ul></article>
+      </div>
+    </section>
+
+    <aside class="method"><strong>Methodik und Datenschutz:</strong> Datenquellen sind Umami (7/30/90 Tage), ein Live-Crawl von eos-erleben.de, ein blockierter synthetischer Booking-Test und aggregierte Read-only-Abfragen im EP-Supabase-Projekt. Bot-Erkennung basiert auf dem ungewöhnlichen Cluster aus Linux/Chrome, Ein-Seiten-Sessions, internationalen Ländern, drei Zielseiten und dem Peak vom 5.–11. Juli. Die öffentliche Darstellung enthält ausschließlich aggregierte Werte – keine Credentials, Session-IDs, Namen, E-Mails oder einzelne Request-IDs.</aside>
+  </main>
+
+  <footer><span>EOS Erleben · Growth & Funnel Audit</span><span>Erstellt mit ChatGPT/Codex · Datenstand 02.08.2026</span></footer>
+</body>
+</html>
